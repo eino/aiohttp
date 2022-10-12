@@ -295,6 +295,6 @@ class ClientWebSocketResponse:
 
     async def __anext__(self) -> WSMessage:
         msg = await self.receive()
-        if msg.type in (WSMsgType.CLOSE, WSMsgType.CLOSING, WSMsgType.CLOSED):
+        if msg.type in (WSMsgType.CLOSE, WSMsgType.CLOSING, WSMsgType.CLOSED, WSMsgType.ERROR):
             raise StopAsyncIteration
         return msg
