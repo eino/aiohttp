@@ -441,7 +441,7 @@ class WebSocketResponse(StreamResponse):
             try:
                 self._waiting = loop.create_future()
                 try:
-                    async with async_timeout.timeout(timeout or self._receive_timeout):
+                    async with async_timeout.timeout(timeout or self._receive_timeout or self._timeout):
                         msg = await self._reader.read()
                     self._reset_heartbeat()
                 finally:
